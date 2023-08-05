@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        body
+        {
+            background-color: black;
+            color: white;
+            font-weight: bold;
+        }
+        .body
+        {
+            display: flex;
+            background-color: black;
+            justify-content: center;
+            align-items: center;
+        }
+        .face
+        {
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+            height: 300px;
+            width: 300px;
+            background-color: #272626;
+            border-radius: 50%;
+        }
+        .face::before
+        {
+            content: '';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            height: 70px;
+            width: 190px;
+            background-color: rgb(110, 54, 54);
+            bottom: 20%;
+            border-radius: 50%;
+        }
+        .face::after
+        {
+            content: '';
+            position: absolute;
+            top: 55%;
+            background-color: #272626;
+            height: 70px;
+            width: 190px;
+            border-radius: 50%;
+            transition: .4s;
+        }
+        .face:hover::after
+        {
+            position: absolute;
+            top: 58%;
+        }
+       .eyes
+        {
+            position: relative;
+            top: -13%;
+            display: flex; 
+        }
+        .eyes .eye
+        {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            display: block;
+            background-color: #fff;
+            margin: 0 15px;
+            border-radius: 50%;
+        }
+        .eyes .eye::before
+        {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 25px;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background-color: black;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<center><h1>@codewithchurchill</h1></center>
+<div class="body">
+    <div class="face">
+        <div class="eyes">
+            <div class="eye"></div>
+            <div class="eye"></div>
+        </div>
+        <div class="mouth">
+            <div class="lc">
+
+            </div>
+        </div>
+    </div>
+</div>
+<center><h1>WORLDCOIN</h1></center>
+ <script>
+    document.querySelector('body').addEventListener('mousemove', eyeball);
+    function eyeball()
+    {
+        var eye = document.querySelectorAll('.eye');
+        eye.forEach(function(eye)
+        {
+            let x = (eye.getBoundingClientRect().left) + (eye.clientWidth / 2);
+            let y = (eye.getBoundingClientRect().top) + (eye.clientHeight / 2);
+            let radian = Math.atan2(event.pageX - x, event.pageY - y);
+            let rot = (radian * (180 / Math.PI) * -1) + 270;
+            eye.style.transform = "rotate("+ rot + "deg)";
+        })
+    }
+ </script>   
+</body>
+</html>
